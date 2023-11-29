@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>속성조작</title>
+    <style>
+      .box-wrap > div {
+        padding: 10px;
+        border: 5px solid #000;
+      }
+    </style>
+    <script src="js/jquery-1.8.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        const $showBox = $(".show-box");
+        // 1-1. 숨겨라 버튼을 클릭하면 .show-box를 안보이게
+        $(".btn-hide").on("click", function () {
+          $showBox.hide();
+        });
+        // 1-2. 보여라 버튼을 클릭하면 .show-box를 보이게
+        $(".btn-show").on("click", function () {
+          $showBox.show();
+        });
+        // 1-3. toggle 효과 구현
+        $(".btn-sh-toggle").on("click", function () {
+          $showBox.toggle();
+        });
+
+        const $fadeBox = $(".fade-box");
+        // 2-1. 숨겨라 버튼을 클릭하면 .fade-box를 fadeOut
+        $(".btn-fout").on("click", function () {
+          $fadeBox.fadeOut(1000); //1초
+        });
+        // 2-2. 보여라 버튼을 클릭하면 .fade-box를 보이게
+        $(".btn-fin").on("click", function () {
+          $fadeBox.fadeIn(300); //0.3초
+        });
+        // 2-3. toggle 효과 구현
+        $(".btn-fade-toggle").on("click", function () {
+          $fadeBox.fadeToggle();
+        });
+
+        const $slideBox = $(".slide-box");
+        // 3-1. 숨겨라 버튼을 클릭하면 .slide-box를 slideOut
+        $(".btn-sup").on("click", function () {
+          $slideBox.slideUp();
+        });
+        // 3-2. 보여라 버튼을 클릭하면 .slide-box를 보이게
+        $(".btn-sdown").on("click", function () {
+          $slideBox.slideDown();
+        });
+        // 3-3. toggle 효과 구현
+        $(".btn-slide-toggle").on("click", function () {
+          $slideBox.slideToggle();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Jquery Effect</h1>
+
+    <hr />
+    <div class="box-wrap">
+      <h2>show / hide</h2>
+      <button class="btn-hide">숨겨라</button>
+      <button class="btn-show">보여라</button>
+      <button class="btn-sh-toggle">SHOW/HIDE</button>
+      <div class="show-box">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde earum,
+        commodi, tempora vitae dignissimos quaerat quis ad, ratione perspiciatis
+        quidem cupiditate reiciendis adipisci nostrum quod totam impedit
+        voluptates dolores voluptas.
+      </div>
+    </div>
+
+    <hr />
+    <div class="box-wrap">
+      <h2>fadeIn / fadeOut</h2>
+      <button class="btn-fout">숨겨라</button>
+      <button class="btn-fin">보여라</button>
+      <button class="btn-fade-toggle">fadeIn/fadeOut</button>
+      <div class="fade-box">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde earum,
+        commodi, tempora vitae dignissimos quaerat quis ad, ratione perspiciatis
+        quidem cupiditate reiciendis adipisci nostrum quod totam impedit
+        voluptates dolores voluptas.
+      </div>
+    </div>
+
+    <hr />
+    <div class="box-wrap">
+      <h2>slideUp / slideDown</h2>
+      <button class="btn-sup">숨겨라</button>
+      <button class="btn-sdown">보여라</button>
+      <button class="btn-slide-toggle">fadeIn/fadeOut</button>
+      <div class="slide-box">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde earum,
+        commodi, tempora vitae dignissimos quaerat quis ad, ratione perspiciatis
+        quidem cupiditate reiciendis adipisci nostrum quod totam impedit
+        voluptates dolores voluptas.
+      </div>
+    </div>
+  </body>
+</html>

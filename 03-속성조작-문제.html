@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>속성조작</title>
+    <style>
+      .default {
+        width: 100px;
+        height: 100px;
+        background: red;
+      }
+      .click-box {
+        background: blue;
+      }
+      .swap {
+        width: 200px;
+        height: 100px;
+        border: 1px solid #000;
+      }
+      .on {
+        border: 5px solid #f39;
+      }
+    </style>
+    <script src="js/jquery-1.8.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // 1. .get-html의 하위요소를 가져와 txt 변수에 담아서 alert으로 띄우기
+        /* 스크립트 방식- */ const txt =
+          document.querySelector(".get-html").innerHTML;
+        /* 스크립트 방식- */ const txt2 =
+          document.querySelector(".get-html").textContent;
+        console.log(txt2);
+
+        const txt3 = $(".get-html").html();
+        alert(txt3);
+
+        // document.querySelector(".get-html").innerHTML = "<h1>근돼지</h1>";
+
+        // 2. .put-html의 하위요소로 <p>됐거든</p> 넣기
+
+        $(".put-html").html(
+          "<p>됐거든</p>"
+        ); /* 내가 넣고싶은 애는 문자열로 html(여기에) 던지면 됨 */
+        // 3. 변신 버튼을 클릭하면 .movie 안의 이미지를 new.jpg로 변경하기
+        $(".change").click(function () {
+          $(".movie img").attr({ src: "./img/new.jpg", alt: "입금 후" });
+          console.log($(".movie img").attr("src"));
+        });
+
+        // 위처럼 클릭 매서드를 사용하면 이벤트 하나하나 써야하지만, 클릭을 on.('click') 처럼 키워드로 사용하면 이벤트를 한 번에 여러가지 쓸 수 있다.
+        $(".change").on("click", function () {});
+
+        // 4. .default를 클릭하면 .click-box 이름 부여
+        $(".default").on("click", () => {
+          $(".default").addClass("click-box");
+        });
+        // });
+        // 5. .swap 을 클릭했을 때 .on이 있으면 삭제하고 없으면 부여
+        // $(".swap").on("click", function () {
+        //   // $(".swap").toggleClass("on");
+        //   $(this).toggleClass("on");
+        //   if ($(".swap").hasClass("on")) {
+        //     $("body").css("background", "black");
+        //   } else {
+        //     $("body").css("background", "#fff");
+        //   }
+        // });
+        // this를 사용할 시 function줄여쓰지 못함
+
+        // 6. .swap 요소에 .on이 있으면 body의 배경색을 노란색으로, 없으면 하얀색으로
+        // if-else의에 쓰인 것 여기에 쓰이면 클릭 이벤트랑 별개가 되므로 위의 클릭 이벤트 안에 포함되어야 함.
+
+        //코드 수정!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(위의 5,6번) 반복되면 변수에 저장하여 쓰는 버릇을 들이자
+        const $swap = $(".swap");
+        const $body = $("body");
+        $swap.on("click", function () {
+          $(this).toggleClass("on");
+
+          if ($swap.hasClass("on")) {
+            $body.css("background", "#f39");
+          } else {
+            $body.css("background", "#fff");
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="get-html">
+      <p>애들이 좀 뛰어 놀 수도 있지. 왜 우리 아이 기를 죽이고 그래요!</p>
+    </div>
+
+    <div class="put-html">
+      <p>그래. 애는 그럴 수 있어. 근데 '니가' 그러면 안 되지.</p>
+    </div>
+
+    <div class="movie">
+      <img src="img/old.jpg" alt="돼지" />
+      <button class="change">변신</button>
+    </div>
+
+    <div class="default">기본 사각형</div>
+
+    <div class="swap">toggleClass</div>
+  </body>
+</html>
